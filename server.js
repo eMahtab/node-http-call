@@ -1,5 +1,8 @@
 var express=require('express');
 var app=express();
+var bodyParser=require('body-parser');
+
+app.use(bodyParser.json());
 
 var olympic_ranking=[
                      {"Ranking":3,"Country":"China"},
@@ -58,6 +61,11 @@ app.get('/olympic/2016/medal/:country_iso',function(req,res){
       }
 });
 
+
+app.post('/samplePost',function(req,res){
+  console.log("Body "+JSON.stringify(req.body));
+  res.status(201).send(JSON.stringify(req.body));
+});
 
 var port = process.env.PORT || 3000;
 
