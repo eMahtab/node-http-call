@@ -4,9 +4,8 @@ var options = {
   protocol:'http:',  
   host: 'localhost',
   port:3000,
-  path: '/samplePost',
-  method:'POST',
-  headers: {'Content-Type': 'application/json'}
+  path: '/sampleDelete/10',
+  method:'DELETE'  
 };
 
 var callback = function(response) {
@@ -29,5 +28,4 @@ request.on('error', function(err) {
         console.error('Error with the request:', err.message);        
 });
 
-request.write('{"club":"Liverpool", "message": "You\'ll never walk alone"}');
 request.end();

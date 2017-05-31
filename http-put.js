@@ -4,19 +4,19 @@ var options = {
   protocol:'http:',  
   host: 'localhost',
   port:3000,
-  path: '/iso/country/Japan',
-  method:'GET'
+  path: '/samplePut',
+  method:'PUT',
+  headers: {'Content-Type': 'application/json'}
 };
 
 var callback = function(response) {
   var str = '';
-
   //another chunk of data has been recieved, so append it to `str`
-  response.on('data', function (chunk) {
+  response.on('data', function (chunk) {  	
     str += chunk;
   });
 
-  //the whole response has been recieved, so we just print it out here
+  //once the whole response has been recieved, so we just print it out here
   response.on('end', function () {
     console.log(str);
   });
@@ -29,5 +29,5 @@ request.on('error', function(err) {
         console.error('Error with the request:', err.message);        
 });
 
+request.write('{"name":"Moscow State University", "country": "Russia"}');
 request.end();
-

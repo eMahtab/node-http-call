@@ -2,7 +2,9 @@ var express=require('express');
 var app=express();
 var bodyParser=require('body-parser');
 
-app.use(bodyParser.json());
+
+app.use(bodyParser.json({limit:'5mb'}));
+
 
 var olympic_ranking=[
                      {"Ranking":3,"Country":"China"},
@@ -63,8 +65,20 @@ app.get('/olympic/2016/medal/:country_iso',function(req,res){
 
 
 app.post('/samplePost',function(req,res){
-  console.log("Body "+JSON.stringify(req.body));
+  console.log("Post Body "+JSON.stringify(req.body));
   res.status(201).send(JSON.stringify(req.body));
+});
+
+
+app.put('/samplePut',function(req,res){
+  console.log("Put Body "+JSON.stringify(req.body));
+  res.status(200).send(JSON.stringify(req.body));
+});
+
+
+app.delete('/sampleDelete/:id',function(req,res){
+  console.log("Id "+JSON.stringify(req.params.id));
+  res.status(200).send({"message":"resource deleted"});
 });
 
 var port = process.env.PORT || 3000;

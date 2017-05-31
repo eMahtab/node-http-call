@@ -4,15 +4,15 @@ var options = {
   protocol:'http:',  
   host: 'localhost',
   port:3000,
-  path: '/samplePost',
-  method:'POST',
-  headers: {'Content-Type': 'application/json'}
+  path: '/iso/country/Japan',
+  method:'GET'
 };
 
 var callback = function(response) {
   var str = '';
+
   //another chunk of data has been recieved, so append it to `str`
-  response.on('data', function (chunk) {  	
+  response.on('data', function (chunk) {
     str += chunk;
   });
 
@@ -29,5 +29,5 @@ request.on('error', function(err) {
         console.error('Error with the request:', err.message);        
 });
 
-request.write('{"club":"Liverpool", "message": "You\'ll never walk alone"}');
 request.end();
+
